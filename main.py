@@ -128,18 +128,24 @@ while alive == True:
     if event.action == "pressed":
       
       # Feeding (UP)
-      if event.direction == "up" and hunger > 275:
+      if event.direction == "up" and hunger > 375:
+        foreground= (255,0,255)
+        s.set_pixels(tamagotchi_face_sadder())
+        hunger = hunger + 25
+      elif event.direction == "up" and hunger > 275:
         foreground= (255,0,255)
         s.set_pixels(tamagotchi_face_sad())
         hunger = hunger + 25
-      if event.direction == "up" and hunger < 276:
+      elif event.direction == "up" and hunger < 276:
         foreground= (0,255,0)
         s.set_pixels(tamagotchi_face_happy())
         hunger = hunger + 50
       
-      
-      
-      # Hurting (DOWN)
+      # Starve (DOWN)
+      elif event.direction == "down" and hunger > 299:
+        foreground= (0,0,255)
+        s.set_pixels(tamagotchi_face_happy())
+        hunger = hunger - 10
       elif event.direction == "down" and hunger > -50:
         foreground= (0,0,255)
         s.set_pixels(tamagotchi_face_sad())
@@ -169,7 +175,7 @@ while alive == True:
       foreground= (0,255,0)
       s.set_pixels(tamagotchi_face_sad())
   elif hunger > 399 and hunger < 500:
-      foreground= (255,0,255)
+      foreground= (0,255,0)
       s.set_pixels(tamagotchi_face_sadder())
   elif hunger < 1 and hunger > -50:
       foreground= (0,0,255)
